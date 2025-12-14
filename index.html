@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kratika 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Pacifico&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg1:#ffe6f2;
+  --bg2:#f3e9ff;
+  --pink:#ff7eb9;
+  --text:#4a2b3c;
+  --card:rgba(255,255,255,.95);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Poppins,sans-serif;
+  background:linear-gradient(180deg,var(--bg1),var(--bg2));
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* Floating hearts */
+.heart-float{
+  position:fixed;
+  bottom:-20px;
+  font-size:18px;
+  animation:floatUp 8s linear infinite;
+  opacity:.5;
+}
+@keyframes floatUp{
+  to{transform:translateY(-110vh);opacity:0}
+}
+
+/* Petals */
+.petal{
+  position:fixed;
+  top:-30px;
+  font-size:16px;
+  animation:fall 10s linear infinite;
+  opacity:.6;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
+
+header{
+  text-align:center;
+  padding:40px 16px 20px;
+}
+
+h1{
+  font-family:Pacifico;
+  font-size:38px;
+  margin:0;
+}
+
+#typeText{
+  margin-top:14px;
+  font-size:15px;
+  min-height:48px;
+}
+
+.container{
+  max-width:430px;
+  margin:auto;
+  padding:16px;
+}
+
+/* Story rows */
+.story-row{
+  display:flex;
+  align-items:center;
+  margin:44px 0;
+  opacity:0;
+  transition:1s cubic-bezier(.2,.8,.2,1);
+}
+.story-row.left{transform:translateX(-60px) scale(.95)}
+.story-row.right{transform:translateX(60px) scale(.95)}
+.story-row.show{opacity:1;transform:none}
+
+/* Media */
+.media{
+  width:65%;
+  background:#000;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 14px 30px rgba(255,126,185,.3);
+}
+.media img,
+.media video{
+  width:100%;
+  display:block;
+}
+
+/* Quote */
+.quote{
+  width:35%;
+  padding:12px;
+  font-size:15px;
+  font-family:"Dancing Script",cursive;
+  color:#6b2c4d;
+  opacity:0;
+  transform:translateY(10px);
+  transition:.8s ease .4s;
+}
+.story-row.show .quote{
+  opacity:1;
+  transform:none;
+}
+
+/* Alignment */
+.story-row.left{justify-content:flex-start}
+.story-row.right{justify-content:flex-end}
+.story-row.left .quote{text-align:left;padding-left:16px}
+.story-row.right .quote{text-align:right;padding-right:16px}
+
+/* Cards */
+.card{
+  background:var(--card);
+  border-radius:28px;
+  padding:16px;
+  box-shadow:0 14px 32px rgba(255,126,185,.25);
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+  margin:30px 0;
+}
+.card.show{opacity:1;transform:none}
+
+.moods{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.moods button{
+  border:none;
+  border-radius:18px;
+  padding:10px;
+  background:#ffd1ea;
+}
+
+.heart{
+  font-size:50px;
+  text-align:center;
+  cursor:pointer;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.25)}
+}
+
+.breath{display:none;text-align:center;font-size:18px}
+
+.promise,.timed,.night{display:none;text-align:center}
+.night{
+  background:linear-gradient(180deg,#2b0f3b,#180821);
+  color:#ffd6ec;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Kratika 💕</h1>
+  <div id="typeText"></div>
+</header>
+
+<div class="container" id="content"></div>
+
+<script>
+/* Typewriter */
+const line="Kratika, no matter what today looks like — you don’t face it alone 🌸";
+let ti=0;
+(function type(){
+  if(ti<line.length){
+    typeText.textContent+=line[ti++];
+    setTimeout(type,40);
+  }
+})();
+
+/* Floating hearts & petals */
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart-float";
+  h.style.left=Math.random()*100+"vw";
+  h.textContent="💗";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8000);
+},1200);
+
+setInterval(()=>{
+  const p=document.createElement("div");
+  p.className="petal";
+  p.style.left=Math.random()*100+"vw";
+  p.textContent="🌸";
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),10000);
+},1800);
+
+/* Heart-touching quotes */
+const quotes=[
+  "Some people feel like home 🤍",
+  "Soft days matter too 🌷",
+  "You’re allowed to rest 🌙",
+  "There’s comfort in being seen ✨",
+  "Quiet strength is still strength 🍃",
+  "You don’t have to rush 🕊️",
+  "This moment feels warm 💞",
+  "Peace looks good on you 🌸",
+  "Even silence can be safe 🤍",
+  "Gentle is powerful too 🌿",
+  "You are enough, just like this ✨",
+  "Some bonds never loosen 🫶",
+  "It’s okay to pause ☁️",
+  "Calm suits you beautifully 🌷",
+  "This space is for you 🤍",
+  "Nothing to prove here 🍃",
+  "You’re doing better than you think 💫",
+  "Let today be soft 🌸",
+  "You matter 🕯️",
+  "This feels like care 🤍"
+];
+
+/* Build media list */
+const items=[];
+for(let i=1;i<=30;i++) items.push({type:"img",src:`media/photo${i}.jpg`});
+for(let i=1;i<=6;i++) items.push({type:"video",src:`media/video${i}.mp4`});
+
+/* Shuffle */
+items.sort(()=>Math.random()-.5);
+
+/* Build story rows */
+items.forEach((m,i)=>{
+  const side=i%2===0?"left":"right";
+  const row=document.createElement("div");
+  row.className=`story-row ${side}`;
+
+  const media=document.createElement("div");
+  media.className="media";
+  media.innerHTML=m.type==="img"
+    ? `<img src="${m.src}" loading="lazy">`
+    : `<video src="${m.src}" muted playsinline loop></video>`;
+
+  const quote=document.createElement("div");
+  quote.className="quote";
+  quote.textContent=quotes[Math.floor(Math.random()*quotes.length)];
+
+  if(side==="left"){ row.append(media,quote); }
+  else{ row.append(quote,media); }
+
+  content.appendChild(row);
+});
+
+/* Mood + heart + messages */
+content.insertAdjacentHTML("beforeend",`
+<div class="card">
+<p style="text-align:center">How are you feeling right now?</p>
+<div class="moods">
+<button onclick="setMood('overwhelmed')">😔</button>
+<button onclick="setMood('tired')">😴</button>
+<button onclick="setMood('happy')">😄</button>
+<button onclick="setMood('missing')">🥺</button>
+</div>
+<div id="quote"></div>
+</div>
+
+<div class="card">
+<div class="heart" onclick="startBreathing()">💗</div>
+<p style="text-align:center">Tap when you need to slow down</p>
+<div class="breath" id="breath">Breathe in…</div>
+</div>
+
+<div class="card promise" id="promise">
+🛡️<br>
+No matter what, you’re not facing life alone.<br>
+— Your Brother
+</div>
+
+<div class="card timed" id="timed">
+If you’re still here… thank you for staying 🌷
+</div>
+
+<div class="card night" id="night">
+🌙<br>
+It’s late.<br>
+Be gentle with yourself tonight 🤍
+</div>
+
+<div class="card night" id="midnightScroll" style="display:none">
+🌌<br>
+If you’re reading this quietly at night…<br>
+slow down.<br>
+You’re safe here 🤍
+</div>
+
+<div class="card" id="endMessage" style="display:none;text-align:center">
+💌<br><br>
+If you reached all the way here, Kratika…<br><br>
+thank you for staying.<br>
+thank you for being you.<br><br>
+No matter how loud or quiet life gets,<br>
+you’ll always have someone cheering for you 🫶<br><br>
+— Your Brother 🛡️
+</div>
+`);
+
+/* Mood logic */
+const moodQuotes={
+overwhelmed:"It’s okay to pause 🌿",
+tired:"Rest without guilt ☁️",
+happy:"Hold onto this ✨",
+missing:"Some bonds stay close 🤍"
+};
+function setMood(m){ quote.textContent=moodQuotes[m]; }
+
+/* Breathing */
+function startBreathing(){
+  breath.style.display="block";
+  const seq=["Breathe in…","Hold…","Breathe out…"];
+  let i=0;
+  const int=setInterval(()=>breath.textContent=seq[i++%3],2000);
+  setTimeout(()=>{clearInterval(int);breath.style.display="none"},12000);
+  promise.style.display="block";
+}
+
+/* Timed */
+setTimeout(()=>timed.style.display="block",60000);
+
+/* Night + halfway scroll */
+const hr=new Date().getHours();
+if(hr>=22||hr<5){
+  night.style.display="block";
+  window.addEventListener("scroll",()=>{
+    if(window.scrollY+innerHeight>document.body.scrollHeight*0.5){
+      midnightScroll.style.display="block";
+      obs.observe(midnightScroll);
+    }
+  },{once:true});
+}
+
+/* End-of-page reveal */
+window.addEventListener("scroll",()=>{
+  if(window.scrollY+innerHeight>=document.documentElement.scrollHeight-10){
+    endMessage.style.display="block";
+    obs.observe(endMessage);
+  }
+},{once:true});
+
+/* Reveal observer */
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>{
+    if(x.isIntersecting){
+      x.target.classList.add("show");
+      const v=x.target.querySelector("video");
+      if(v) v.play();
+    }else{
+      const v=x.target.querySelector("video");
+      if(v) v.pause();
+    }
+  });
+},{threshold:.3});
+
+document.querySelectorAll(".story-row,.card").forEach(el=>obs.observe(el));
+</script>
+
+<p style="text-align:center;font-size:13px;opacity:.6;margin:40px 0">
+  Always for you, Kratika 🤍
+</p>
+
+</body>
+</html>
